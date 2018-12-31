@@ -7,7 +7,7 @@ It is easy to use, fast and has a simple query language.
 
 The code is fully documented, tested and beginner friendly with around 400 LOC.
 
-Only the standard library is used and it works on Python 2.7, Python 3.1+ and PyPy 2.7.
+Only the standard library is used and it works on Python 2.7, Python 3.2+ and PyPy 2.7.
 
 
 Usage

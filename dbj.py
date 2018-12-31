@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.0
+# dbj 0.1.1
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
@@ -52,7 +52,7 @@ class dbj(object):
     def load(self):
         '''Load the database or create a new one if the file does not exist.'''
         if os.path.exists(self.path):
-            with open(self.path, 'rb') as f:
+            with open(self.path, 'rt') as f:
                 db_data = json.load(f, object_pairs_hook=OrderedDict)
         else:
             db_data = OrderedDict()
