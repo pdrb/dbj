@@ -1,3 +1,5 @@
+|Build Status|
+
 dbj
 ===
 
@@ -438,3 +440,7 @@ find(query, sens=False, asc=True) -> Simple query like search.
         | asc (bool, optional): Ascii conversion before matching, this matches text like 'cafe' and 'café'. Defaults to True.
     Returns:
         List with the keys of the documents that matched the search.
+
+
+.. |Build Status| image:: https://travis-ci.org/pdrb/dbj.svg?branch=master
+    :target: https://travis-ci.org/pdrb/dbj
