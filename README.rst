@@ -5,6 +5,10 @@ dbj is a simple embedded in memory json database.
 
 It is easy to use, fast and has a simple query language.
 
+The code is fully documented, tested and beginner friendly with around 590 sloc.
+
+Only the standard library is used and it works on Python 2.7 and Python 3.1+.
+
 
 Usage
 -----
@@ -54,15 +58,15 @@ Install using pip::
 Examples
 --------
 
-Please check the available commands for a full list of supported methods.
+Check the `available commands`_ for a full list of supported methods.
 
-Import the module and create a new database:
-.. code-block:: python
+Import the module and create a new database:: python
 
     >>> from dbj import dbj
     >>> db = dbj('mydb.json')
 
 Insert a few documents with auto generated key:
+
 .. code-block:: python
 
     >>> doc = {'name': 'John Doe', 'age': 18}
@@ -74,6 +78,7 @@ Insert a few documents with auto generated key:
     2
 
 Insert with a supplied key:
+
 .. code-block:: python
 
     >>> doc = {'name': 'john', 'age': 20, 'country': 'Brasil'}
@@ -87,6 +92,7 @@ Insert with a supplied key:
     ['7a5ebd420cb211e98a0ff23c91392d78', 'db21baf80cb211e98a0ff23c91392d78', 'db21edde0cb211e98a0ff23c91392d78', '1', '2']
 
 Pop and delete:
+
 .. code-block:: python
 
     >>> db.delete('1')
@@ -102,6 +108,7 @@ Pop and delete:
     ['7a5ebd420cb211e98a0ff23c91392d78', 'db21baf80cb211e98a0ff23c91392d78', 'db21edde0cb211e98a0ff23c91392d78']
 
 Retrieving some documents:
+
 .. code-block:: python
 
     >>> db.getall()
@@ -117,12 +124,14 @@ Retrieving some documents:
     {'name': 'Ana', 'age': 10}
 
 Check for existance:
+
 .. code-block:: python
 
     >>> db.exists('7a5ebd420cb211e98a0ff23c91392d78')
     True
 
 Searchin and sorting:
+
 .. code-block:: python
 
     >>> r = db.sort(db.getallkeys(), 'name')
@@ -144,12 +153,14 @@ Searchin and sorting:
     [{'name': 'Ana', 'age': 10}, {'name': 'John Doe', 'age': 18}, {'name': 'Beatriz', 'age': 30}]
 
 Save the database to disk:
+
 .. code-block:: python
 
     >>> db.save()
     True
 
 Enable auto saving to disk after a insert, update or delete:
+
 .. code-block:: python
 
     >>> db = dbj('mydb.json', autosave=True)
@@ -158,16 +169,16 @@ Enable auto saving to disk after a insert, update or delete:
 About the simple query language
 -------------------------------
 
-The query for the find command uses the following pattern::
+The query for the find command uses the following pattern:
 
-    *field operator value and/or field operator value...*
+*field operator value and/or field operator value...*
 
-Spaces are **mandatory** and used as a separator by the parser. For example,
+**Spaces are mandatory** and used as a separator by the parser. For example,
 the following query **will not work**::
 
     name=="John" and age >=18
 
-A **valid** example::
+**A valid example**::
 
     name == "John Doe" and age >= 18
 
@@ -183,16 +194,20 @@ search will be used.
 The supported string operators are::
 
     '==' -> Exact match. 'John' will not match 'John Doe' but will match 'john'
-by default. If case sensitive is desired, just use find with sens=True. See
-available commands below for the full find method signature.
+    by default. If case sensitive is desired, just use find with sens=True. See
+    available commands below for the full find method signature.
+
     '?=' -> Partial match. In this case, 'John' will match 'John Doe'.
+
     '!=' -> Not equal operator.
 
 The numbers comparison operators are::
 
     '==', '!=', '<', '<=', '>', '>='
 
-The supported logical operatos are: '**and**' / '**or**'.
+The supported logical operatos are::
+
+    and, or
 
 
 Performance
@@ -257,13 +272,14 @@ Available commands
 ------------------
 
 **insert(document, key=None) -> Create a new document on database.**
-Args:
-    document (dict): The document to be created.
-    key (str, optional): The document unique key. Defaults to uuid1.
-Returns:
-    The document key.
+    Args:
+        document (dict): The document to be created.
+        key (str, optional): The document unique key. Defaults to uuid1.
+    Returns:
+        The document key.
 
 **insertmany(documents) -> Insert multiple documents on database.**
+
 Args:
     documents (list): List containing the documents to insert.
 Returns:
@@ -276,8 +292,10 @@ Returns:
 **size() -> Return the number of documents on database.**
 
 **exists(key) -> Check if a document exists on database.**
+
 Args:
     key (str): The document key.
+
 Returns:
     True or False if it does not exist.
 
