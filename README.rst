@@ -398,31 +398,21 @@ findtext(field, text, exact=False, sens=False, inverse=False, asc=True) -> Simpl
         | text (str): The value to be searched.
         | exact (bool, optional): Exact text match. Defaults to False.
         | sens (bool, optional): Case sensitive. Defaults to False.
-        | inverse (bool, optional): Inverse search, return the documents that
-        |     do not match the search. Defaults to False.
-        | asc (bool, optional): Ascii conversion before matching, this
-        |     matches text like 'cafe' and 'café'. Defaults to True.
+        | inverse (bool, optional): Inverse search, return the documents that do not match the search. Defaults to False.
+        | asc (bool, optional): Ascii conversion before matching, this matches text like 'cafe' and 'café'. Defaults to True.
     Returns:
         List with the keys of the documents that matched the search.
 
 findnum(expression) -> Simple number comparison search on provided field.
     Args:
-        | expression (str): The comparison expression to use, e.g.,
-        |     "age >= 18". The pattern is 'field operator number'.
+        | expression (str): The comparison expression to use, e.g., "age >= 18". The pattern is 'field operator number'.
     Returns:
         List with the keys of the documents that matched the search.
 
 find(query, sens=False, asc=True) -> Simple query like search.
     Args:
-        | query (str): The query to use, examples:
-        |     1. age >= 18
-        |     2. description ?= "dbj is a"
-        |     3. name != "John" and age < 18
-        |     4. name == "Ana" or name == ""Bob "B" Lee"" and age >= 30
-        |     The pattern is:
-        |         'field operator value and/or field operator value...'
+        | query (str): The query to use.
         | sens (bool, optional): Case sensitive. Defaults to False.
-        | asc (bool, optional): Ascii conversion before matching, this
-        |     matches text like 'cafe' and 'café'. Defaults to True.
+        | asc (bool, optional): Ascii conversion before matching, this matches text like 'cafe' and 'café'. Defaults to True.
     Returns:
         List with the keys of the documents that matched the search.
