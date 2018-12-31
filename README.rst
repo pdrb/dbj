@@ -286,133 +286,143 @@ insertmany(documents) -> Insert multiple documents on database.
     Returns:
         Number of inserted documents.
 
-**save() -> Save database to disk.**
+save() -> Save database to disk.
+    Returns:
+        True if successful.
 
-**clear() -> Remove all documents from database.**
+clear() -> Remove all documents from database.
+    Returns:
+        True if successful.
 
-**size() -> Return the number of documents on database.**
+size() -> Return the database size.
+    Returns:
+        Number of documents on database.
 
-**exists(key) -> Check if a document exists on database.**
+exists(key) -> Check if a document exists on database.
     Args:
         key (str): The document key.
     Returns:
         True or False if it does not exist.
 
-**delete(key) -> Delete a document on database.**
+delete(key) -> Delete a document on database.
     Args:
         key (str): The document key.
     Returns:
         True or False if it does not exist.
 
-**deletemany(keys) -> Delete multiple documents on database.**
+deletemany(keys) -> Delete multiple documents on database.
     Args:
         keys (list): List containing the keys of the documents to delete.
     Returns:
         Number of deleted documents.
 
-**update(key, values) -> Add/update values on a document.**
+update(key, values) -> Add/update values on a document.
     Args:
-        key (str): The document key.
-        values (dict): The values to be added/updated.
+        | key (str): The document key.
+        | values (dict): The values to be added/updated.
     Returns:
         True or False if document does not exist.
 
-**updatemany(keys, values) -> Add/update values on multiple documents.**
+updatemany(keys, values) -> Add/update values on multiple documents.
     Args:
-        keys (list): List containing the keys of the documents to update.
-        values (dict): The values to be added/updated.
+        | keys (list): List containing the keys of the documents to update.
+        | values (dict): The values to be added/updated.
     Returns:
         Number of updated documents.
 
-**get(key) -> Get a document on database.**
+get(key) -> Get a document on database.
     Args:
         key (str): The document key.
     Returns:
         The document or False if it does not exist.
 
-**getmany(keys) -> Get multiple documents from database.**
+getmany(keys) -> Get multiple documents from database.
     Args:
         keys (list): List containing the keys of the documents to retrieve.
     Returns:
         List of documents.
 
-**getall() -> Return a list containing all documents on database.**
+getall() -> Return a list containing all documents on database.
+    Returns:
+        List with all database documents.
 
-**getallkeys() -> Return a list containing all keys on database.**
+getallkeys() -> Return a list containing all keys on database.
+    Returns:
+        List with all database keys.
 
-**getrandom() -> Get a random document on database.**
+getrandom() -> Get a random document on database.
     Returns:
         A document or False if database is empty.
 
-**getfirst(self) -> Get the first inserted document on database.**
+getfirst(self) -> Get the first inserted document on database.
     Returns:
         The first inserted document or False if database is empty.
 
-**getlast() -> Get the last inserted document on database.**
+getlast() -> Get the last inserted document on database.
     Returns:
         The last inserted document or False if database is empty.
 
-**getfirstkey() -> Get the first key on database.**
+getfirstkey() -> Get the first key on database.
     Returns:
         The first key or False if database is empty.
 
-**getlastkey() -> Get the last key on database.**
+getlastkey() -> Get the last key on database.
     Returns:
         The last key or False if database is empty.
 
-**pop(key) -> Get the document from database and remove it.**
+pop(key) -> Get the document from database and remove it.
     Args:
         key (str): The document key.
     Returns:
         The document or False if it does not exist.
 
-**popfirst() -> Get the first inserted document on database and remove it.**
+popfirst() -> Get the first inserted document on database and remove it.
     Returns:
         The first inserted document or False if database is empty.
 
-**poplast() -> Get the last inserted document on database and remove it.**
+poplast() -> Get the last inserted document on database and remove it.
     Returns:
         The last inserted document or False if database is empty.
 
-**sort(keys, field, reverse=False) -> Sort the documents using the field provided.**
+sort(keys, field, reverse=False) -> Sort the documents using the field provided.
     Args:
-        keys (list): List containing the keys of the documents to sort.
-        field (str): Field to sort.
-        reverse (bool, optional): Reverse search. Defaults to False.
+        | keys (list): List containing the keys of the documents to sort.
+        | field (str): Field to sort.
+        | reverse (bool, optional): Reverse search. Defaults to False.
     Returns:
         Sorted list with the documents keys.
 
-**findtext(field, text, exact=False, sens=False, inverse=False, asc=True) -> Simple text search on the provided field.**
+findtext(field, text, exact=False, sens=False, inverse=False, asc=True) -> Simple text search on the provided field.
     Args:
-        field (str): The field to search.
-        text (str): The value to be searched.
-        exact (bool, optional): Exact text match. Defaults to False.
-        sens (bool, optional): Case sensitive. Defaults to False.
-        inverse (bool, optional): Inverse search, return the documents that
-            do not match the search. Defaults to False.
-        asc (bool, optional): Ascii conversion before matching, this
-            matches text like 'cafe' and 'café'. Defaults to True.
+        | field (str): The field to search.
+        | text (str): The value to be searched.
+        | exact (bool, optional): Exact text match. Defaults to False.
+        | sens (bool, optional): Case sensitive. Defaults to False.
+        | inverse (bool, optional): Inverse search, return the documents that
+        |     do not match the search. Defaults to False.
+        | asc (bool, optional): Ascii conversion before matching, this
+        |     matches text like 'cafe' and 'café'. Defaults to True.
     Returns:
         List with the keys of the documents that matched the search.
 
-**findnum(expression) -> Simple number comparison search on provided field.**
+findnum(expression) -> Simple number comparison search on provided field.
     Args:
-        expression (str): The comparison expression to use, e.g.,
-            "age >= 18". The pattern is 'field operator number'.
+        | expression (str): The comparison expression to use, e.g.,
+        |     "age >= 18". The pattern is 'field operator number'.
     Returns:
         List with the keys of the documents that matched the search.
 
-**find(query, sens=False, asc=True) -> Simple query like search.**
+find(query, sens=False, asc=True) -> Simple query like search.
     Args:
-        query (str): The query to use, examples:
-            1. age >= 18
-            2. description ?= "dbj is a"
-            3. name != "John" and age < 18
-            4. name == "Ana" or name == ""Bob "B" Lee"" and age >= 30
-            The pattern is:
-                'field operator value and/or field operator value...'
-        sens (bool, optional): Case sensitive. Defaults to False.
-        asc (bool, optional): Ascii conversion before matching, this
-            matches text like 'cafe' and 'café'. Defaults to True.
+        | query (str): The query to use, examples:
+        |     1. age >= 18
+        |     2. description ?= "dbj is a"
+        |     3. name != "John" and age < 18
+        |     4. name == "Ana" or name == ""Bob "B" Lee"" and age >= 30
+        |     The pattern is:
+        |         'field operator value and/or field operator value...'
+        | sens (bool, optional): Case sensitive. Defaults to False.
+        | asc (bool, optional): Ascii conversion before matching, this
+        |     matches text like 'cafe' and 'café'. Defaults to True.
     Returns:
         List with the keys of the documents that matched the search.
