@@ -275,18 +275,18 @@ Available commands
 
 insert(document, key=None) -> Create a new document on database.
     Args:
-        document (dict): The document to be created.
-        key (str, optional): The document unique key. Defaults to uuid1.
+        | document (dict): The document to be created.
+        | key (str, optional): The document unique key. Defaults to uuid1.
     Returns:
         The document key.
 
-**insertmany(documents) -> Insert multiple documents on database.**
-|Args:
-|    documents (list): List containing the documents to insert.
-|Returns:
-|    Number of inserted documents.
+insertmany(documents) -> Insert multiple documents on database.
+    Args:
+        documents (list): List containing the documents to insert.
+    Returns:
+        Number of inserted documents.
 
-save() -> Save database to disk.
+**save() -> Save database to disk.**
 
 **clear() -> Remove all documents from database.**
 
