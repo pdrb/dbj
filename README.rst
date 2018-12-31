@@ -13,7 +13,7 @@ Only the standard library is used and it works on Python 2.7, Python 3.3+ and Py
 
 
 Usage
-*****
+=====
 
 .. code-block:: python
 
@@ -50,7 +50,7 @@ Usage
 
 
 Install
-*******
+=======
 
 Install using pip::
 
@@ -58,7 +58,7 @@ Install using pip::
 
 
 Examples
-********
+========
 
 Check the `available commands`_ for a full list of supported methods.
 
@@ -193,7 +193,7 @@ Enable auto saving to disk after a insert, update or delete:
 
 
 About the simple query language
-*******************************
+===============================
 
 The query for the find command uses the following pattern:
 
@@ -237,7 +237,7 @@ The supported logical operatos are::
 
 
 Performance
-***********
+===========
 
 Since the entire database is an OrderedDict in memory, performance is pretty
 good. On a cheap single core VM it can handle dozens of thousands operations
@@ -295,7 +295,7 @@ second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
 
 
 Available commands
-******************
+==================
 
 insert(document, key=None) -> Create a new document on database.
     Args:
