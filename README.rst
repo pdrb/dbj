@@ -60,7 +60,7 @@ Examples
 
 Check the `available commands`_ for a full list of supported methods.
 
-Import the module and create a new database::
+Import the module and create a new database:
 
 .. code-block:: python
 
@@ -273,7 +273,7 @@ second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
 Available commands
 ------------------
 
-**insert(document, key=None) -> Create a new document on database.**
+insert(document, key=None) -> Create a new document on database.
     Args:
         document (dict): The document to be created.
         key (str, optional): The document unique key. Defaults to uuid1.
@@ -281,12 +281,12 @@ Available commands
         The document key.
 
 **insertmany(documents) -> Insert multiple documents on database.**
-    Args:
-        documents (list): List containing the documents to insert.
-    Returns:
-        Number of inserted documents.
+|Args:
+|    documents (list): List containing the documents to insert.
+|Returns:
+|    Number of inserted documents.
 
-**save() -> Save database to disk.**
+save() -> Save database to disk.
 
 **clear() -> Remove all documents from database.**
 
