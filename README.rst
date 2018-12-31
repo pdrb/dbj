@@ -60,7 +60,9 @@ Examples
 
 Check the `available commands`_ for a full list of supported methods.
 
-Import the module and create a new database:: python
+Import the module and create a new database::
+
+.. code-block:: python
 
     >>> from dbj import dbj
     >>> db = dbj('mydb.json')
@@ -279,11 +281,10 @@ Available commands
         The document key.
 
 **insertmany(documents) -> Insert multiple documents on database.**
-
-Args:
-    documents (list): List containing the documents to insert.
-Returns:
-    Number of inserted documents.
+    Args:
+        documents (list): List containing the documents to insert.
+    Returns:
+        Number of inserted documents.
 
 **save() -> Save database to disk.**
 
@@ -292,136 +293,126 @@ Returns:
 **size() -> Return the number of documents on database.**
 
 **exists(key) -> Check if a document exists on database.**
-
-Args:
-    key (str): The document key.
-
-Returns:
-    True or False if it does not exist.
+    Args:
+        key (str): The document key.
+    Returns:
+        True or False if it does not exist.
 
 **delete(key) -> Delete a document on database.**
-Args:
-    key (str): The document key.
-Returns:
-    True or False if it does not exist.
+    Args:
+        key (str): The document key.
+    Returns:
+        True or False if it does not exist.
 
 **deletemany(keys) -> Delete multiple documents on database.**
-Args:
-    keys (list): List containing the keys of the documents to delete.
-Returns:
-    Number of deleted documents.
+    Args:
+        keys (list): List containing the keys of the documents to delete.
+    Returns:
+        Number of deleted documents.
 
 **update(key, values) -> Add/update values on a document.**
-Args:
-    key (str): The document key.
-    values (dict): The values to be added/updated.
-Returns:
-    True or False if document does not exist.
+    Args:
+        key (str): The document key.
+        values (dict): The values to be added/updated.
+    Returns:
+        True or False if document does not exist.
 
 **updatemany(keys, values) -> Add/update values on multiple documents.**
-Args:
-    keys (list): List containing the keys of the documents to update.
-    values (dict): The values to be added/updated.
-Returns:
-    Number of updated documents.
+    Args:
+        keys (list): List containing the keys of the documents to update.
+        values (dict): The values to be added/updated.
+    Returns:
+        Number of updated documents.
 
 **get(key) -> Get a document on database.**
-Args:
-    key (str): The document key.
-Returns:
-    The document or False if it does not exist.
+    Args:
+        key (str): The document key.
+    Returns:
+        The document or False if it does not exist.
 
 **getmany(keys) -> Get multiple documents from database.**
-Args:
-    keys (list): List containing the keys of the documents to retrieve.
-Returns:
-    List of documents.
+    Args:
+        keys (list): List containing the keys of the documents to retrieve.
+    Returns:
+        List of documents.
 
 **getall() -> Return a list containing all documents on database.**
 
 **getallkeys() -> Return a list containing all keys on database.**
 
 **getrandom() -> Get a random document on database.**
-Returns:
-    A document or False if database is empty.
+    Returns:
+        A document or False if database is empty.
 
 **getfirst(self) -> Get the first inserted document on database.**
-Returns:
-    The first inserted document or False if database is empty.
+    Returns:
+        The first inserted document or False if database is empty.
 
 **getlast() -> Get the last inserted document on database.**
-Returns:
-    The last inserted document or False if database is empty.
+    Returns:
+        The last inserted document or False if database is empty.
 
 **getfirstkey() -> Get the first key on database.**
-Returns:
-    The first key or False if database is empty.
+    Returns:
+        The first key or False if database is empty.
 
 **getlastkey() -> Get the last key on database.**
-Returns:
-    The last key or False if database is empty.
+    Returns:
+        The last key or False if database is empty.
 
 **pop(key) -> Get the document from database and remove it.**
-Args:
-    key (str): The document key.
-Returns:
-    The document or False if it does not exist.
+    Args:
+        key (str): The document key.
+    Returns:
+        The document or False if it does not exist.
 
 **popfirst() -> Get the first inserted document on database and remove it.**
-Returns:
-    The first inserted document or False if database is empty.
+    Returns:
+        The first inserted document or False if database is empty.
 
 **poplast() -> Get the last inserted document on database and remove it.**
-Returns:
-    The last inserted document or False if database is empty.
+    Returns:
+        The last inserted document or False if database is empty.
 
 **sort(keys, field, reverse=False) -> Sort the documents using the field provided.**
-Args:
-    keys (list): List containing the keys of the documents to sort.
-    field (str): Field to sort.
-    reverse (bool, optional): Reverse search. Defaults to False.
-Returns:
-    Sorted list with the documents keys.
+    Args:
+        keys (list): List containing the keys of the documents to sort.
+        field (str): Field to sort.
+        reverse (bool, optional): Reverse search. Defaults to False.
+    Returns:
+        Sorted list with the documents keys.
 
-**findtext(field, text, exact=False, sens=False, inverse=False, asc=True) ->
-    Simple text search on the provided field.**
-Args:
-    field (str): The field to search.
-    text (str): The value to be searched.
-    exact (bool, optional): Exact text match. Defaults to False.
-    sens (bool, optional): Case sensitive. Defaults to False.
-    inverse (bool, optional): Inverse search, return the documents that
-        do not match the search. Defaults to False.
-    asc (bool, optional): Ascii conversion before matching, this
-        matches text like 'cafe' and 'café'. Defaults to True.
-Returns:
-    List with the keys of the documents that matched the search.
+**findtext(field, text, exact=False, sens=False, inverse=False, asc=True) -> Simple text search on the provided field.**
+    Args:
+        field (str): The field to search.
+        text (str): The value to be searched.
+        exact (bool, optional): Exact text match. Defaults to False.
+        sens (bool, optional): Case sensitive. Defaults to False.
+        inverse (bool, optional): Inverse search, return the documents that
+            do not match the search. Defaults to False.
+        asc (bool, optional): Ascii conversion before matching, this
+            matches text like 'cafe' and 'café'. Defaults to True.
+    Returns:
+        List with the keys of the documents that matched the search.
 
 **findnum(expression) -> Simple number comparison search on provided field.**
-Args:
-    expression (str): The comparison expression to use, e.g.,
-        "age >= 18". The pattern is 'field operator number'.
-Returns:
-    List with the keys of the documents that matched the search.
+    Args:
+        expression (str): The comparison expression to use, e.g.,
+            "age >= 18". The pattern is 'field operator number'.
+    Returns:
+        List with the keys of the documents that matched the search.
 
 **find(query, sens=False, asc=True) -> Simple query like search.**
-Args:
-    query (str): The query to use, examples:
-        1. age >= 18
-        2. description ?= "dbj is a"
-        3. name != "John" and age < 18
-        4. name == "Ana" or name == ""Bob "B" Lee"" and age >= 30
-        The pattern is:
-            'field operator value and/or field operator value...'
-    sens (bool, optional): Case sensitive. Defaults to False.
-    asc (bool, optional): Ascii conversion before matching, this
-        matches text like 'cafe' and 'café'. Defaults to True.
-Returns:
-    List with the keys of the documents that matched the search.
-
-
-Notes
------
-
-- Works on Python 2.7 and Python 3
-- Uses only Python standard library for maximum compatibility
+    Args:
+        query (str): The query to use, examples:
+            1. age >= 18
+            2. description ?= "dbj is a"
+            3. name != "John" and age < 18
+            4. name == "Ana" or name == ""Bob "B" Lee"" and age >= 30
+            The pattern is:
+                'field operator value and/or field operator value...'
+        sens (bool, optional): Case sensitive. Defaults to False.
+        asc (bool, optional): Ascii conversion before matching, this
+            matches text like 'cafe' and 'café'. Defaults to True.
+    Returns:
+        List with the keys of the documents that matched the search.
