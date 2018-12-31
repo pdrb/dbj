@@ -9,5 +9,11 @@ python:
   - "3.6"
   - "pypy"
 
+install:
+  - pip install coveralls
+
 script:
-  - python test_dbj.py
+  - coverage run test_dbj.py
+
+after_success:
+  - coveralls

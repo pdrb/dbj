@@ -1,4 +1,4 @@
-|Build Status|
+|Build Status| |Coverage|
 
 dbj
 ===
@@ -444,3 +444,6 @@ find(query, sens=False, asc=True) -> Simple query like search.
 
 .. |Build Status| image:: https://travis-ci.org/pdrb/dbj.svg?branch=master
     :target: https://travis-ci.org/pdrb/dbj
+
+.. |Coverage| .. image:: https://coveralls.io/repos/github/pdrb/dbj/badge.svg?branch=master
+    :target: https://coveralls.io/github/pdrb/dbj?branch=master
