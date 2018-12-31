@@ -69,7 +69,7 @@ class testdbj(unittest.TestCase):
         self.db.insert(docs[1], '2')
         with self.assertRaises(TypeError):
             self.db.getmany('1, 2')
-        self.assertEqual(self.db.getmany(['1', '2']), docs)
+        self.assertEqual(self.db.getmany(['1', '2', '3']), docs)
 
     def test_getall(self):
         docs = [{'test': 'testing'}, {'test2': 'testing2'}]
@@ -212,12 +212,14 @@ class testdbj(unittest.TestCase):
             {'name': 'Ana', 'age': 18},
             {'name': 'Bia', 'age': 10},
             {'name': 'John', 'age': 30},
-            {'name': 'Baby', 'age': 1}
+            {'name': 'Baby', 'age': 1},
+            {'country': 'Brasil'}
         ]
         self.db.insert(docs[0], '1')
         self.db.insert(docs[1], '2')
         self.db.insert(docs[2], '3')
         self.db.insert(docs[3], '4')
+        self.db.insert(docs[4], '5')
         keys = self.db.getallkeys()
         self.assertEqual(self.db.sort(keys, 'name'), ['1', '4', '2', '3'])
         self.assertEqual(self.db.sort(
@@ -243,11 +245,16 @@ class testdbj(unittest.TestCase):
             self.db.findtext('1', 'test', ascii='0')
         self.db.insert({'name': 'André'}, '1')
         self.db.insert({'name': 'andre silva'}, '2')
+        self.db.insert({'country': 'Brasil'}, '3')
+        self.db.insert({'name': 30}, '4')
         self.assertEqual(self.db.findtext('name', 'andre'), ['1', '2'])
         self.assertEqual(self.db.findtext('name', 'andre', exact=True), ['1'])
         self.assertEqual(self.db.findtext('name', 'andre', sens=True), ['2'])
         self.assertEqual(self.db.findtext('name', 'andre', inverse=True), [])
         self.assertEqual(self.db.findtext('name', 'andré', asc=False), ['1'])
+        self.assertEqual(
+            self.db.findtext('name', 'André', exact=True, sens=True), ['1']
+        )
 
     def test_findnum(self):
         with self.assertRaises(TypeError):
@@ -266,6 +273,8 @@ class testdbj(unittest.TestCase):
         self.assertEqual(self.db.findnum('age <= 18'), ['1', '2'])
         self.assertEqual(self.db.findnum('age > 18'), [])
         self.assertEqual(self.db.findnum('age >= 18'), ['1'])
+        self.assertEqual(self.db.findnum('salary == 10000'), [])
+        self.assertEqual(self.db.findnum('age > 10'), ['1'])
 
     def test_find(self):
         with self.assertRaises(TypeError):
@@ -292,16 +301,26 @@ class testdbj(unittest.TestCase):
         self.assertEqual(self.db.find(query), [])
         query = 'name == "andre"'
         self.assertEqual(self.db.find(query), ['1'])
+        query = 'name == "andre" or name ?= "bob"'
+        r = self.db.find(query)
+        r.sort()
+        self.assertEqual(r, ['1', '3'])
         query = 'name != "andre" and age >= 30'
         self.assertEqual(self.db.find(query), ['3'])
         query = 'name ?= "andre"'
-        self.assertEqual(self.db.find(query), ['1', '2'])
+        r = self.db.find(query)
+        r.sort()
+        self.assertEqual(r, ['1', '2'])
         query = 'age >= 18 and name ?= "andré"'
         self.assertEqual(self.db.find(query, sens=True), ['2'])
         query = 'name ?= "andré"'
         self.assertEqual(self.db.find(query, asc=False), ['1'])
         query = 'name ?= ""Bob "B""" and age >= 30'
         self.assertEqual(self.db.find(query), ['3'])
+        query = 'name == "andre" or name ?= "bob" and age > 18'
+        self.assertEqual(self.db.find(query), ['3'])
+        query = 'name == "andre" or name == "ana" or name == "bob"'
+        self.assertEqual(self.db.find(query), ['1'])
 
     def test__parse_query(self):
         query = 'age <= 18'

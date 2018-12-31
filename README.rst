@@ -5,9 +5,9 @@ dbj is a simple embedded in memory json database.
 
 It is easy to use, fast and has a simple query language.
 
-The code is fully documented, tested and beginner friendly with around 590 sloc.
+The code is fully documented, tested and beginner friendly with around 400 LOC.
 
-Only the standard library is used and it works on Python 2.7 and Python 3.1+.
+Only the standard library is used and it works on Python 2.7, Python 3.1+ and PyPy 2.7.
 
 
 Usage
@@ -108,6 +108,28 @@ Pop and delete:
 
     >>> db.getallkeys()
     ['7a5ebd420cb211e98a0ff23c91392d78', 'db21baf80cb211e98a0ff23c91392d78', 'db21edde0cb211e98a0ff23c91392d78']
+
+Updating an existing document:
+
+.. code-block:: python
+
+    >>> db.insert({'name': 'Ethan', 'age': 40}, '1000')
+    '1000'
+
+    >>> db.get('1000')
+    {'name': 'Ethan', 'age': 40}
+
+    >>> db.update('1000', {'age': 50})
+    True
+
+    >>> db.get('1000')
+    {'name': 'Ethan', 'age': 50}
+
+    >>> db.update('1000', {'name': 'Ethan Doe', 'gender': 'male'})
+    True
+
+    >>> db.pop('1000')
+    {'name': 'Ethan Doe', 'age': 50, 'gender': 'male'}
 
 Retrieving some documents:
 
