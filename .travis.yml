@@ -1,5 +1,4 @@
 language: python
-
 python:
   - "2.7"
   - "3.3"
@@ -7,7 +6,6 @@ python:
   - "3.5"
   - "3.6"
   - "pypy"
-
 jobs:
   include:
     - python: "3.7"
@@ -15,9 +13,7 @@ jobs:
 
 install:
   - pip install coveralls
-
 script:
   - coverage run test_dbj.py
-
 after_success:
   - coveralls

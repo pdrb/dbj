@@ -1,14 +1,6 @@
-import sys
-
 from setuptools import setup
 from codecs import open
 from os import path
-
-if sys.version_info < (2, 7):
-    raise NotImplementedError(
-        'Unsupported Python version, you need Python 2.7, Python 3.3+ or '
-        'PyPy 2.7 to use dbj.'
-    )
 
 here = path.abspath(path.dirname(__file__))
 
@@ -16,7 +8,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-version = '0.1.2'
+version = '0.1.3'
 
 
 setup(
@@ -29,7 +21,19 @@ setup(
     url='https://github.com/pdrb/dbj',
     license='MIT',
     classifiers=[
+        'Development Status :: 4 - Beta',
+        'Operating System :: OS Independent',
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
+        'License :: OSI Approved :: MIT License',
+        'Topic :: Database',
+        'Topic :: Utilities',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
