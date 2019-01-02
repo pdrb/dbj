@@ -20,11 +20,14 @@ Usage
     >>> from dbj import dbj
     >>> db = dbj('mydb.json')
 
+    >>> # Insert using an auto generated uuid1 key
     >>> db.insert({'name': 'John', 'age': 18})
     'a71d90ce0c7611e995faf23c91392d78'
 
-    >>> db.insert({'name': 'Ana', 'age': 10}, '1')
-    '1'
+    >>> # Insert using a supplied key, in this case 'user:anab'
+    >>> user = {'name': 'Ana Beatriz', 'age': 10, 'username': 'anab'}
+    >>> db.insert(user, 'user:anab')
+    'user:anab'
 
     >>> db.insert({'name': 'Bob', 'age': 30})
     'cc6ddfe60c7611e995faf23c91392d78'
@@ -32,18 +35,23 @@ Usage
     >>> db.get('a71d90ce0c7611e995faf23c91392d78')
     {'name': 'John', 'age': 18}
 
-    >>> db.get('1')
-    {'name': 'Ana', 'age': 10}
+    >>> db.get('user:anab')
+    {'name': 'Ana Beatriz', 'age': 10, 'username': 'anab'}
 
     >>> db.find('age >= 18')
     ['a71d90ce0c7611e995faf23c91392d78', 'cc6ddfe60c7611e995faf23c91392d78']
 
-    >>> db.find('name == "Ana"')
-    ['1']
+    >>> db.find('name == "ana beatriz"')
+    ['user:anab']
 
     >>> r = db.find('name == "John" or name == "Bob" and age > 10')
     >>> db.getmany(r)
     [{'name': 'Bob', 'age': 30}, {'name': 'John', 'age': 18}]
+
+    >>> # Sort the result by age
+    >>> r = db.sort(r, 'age')
+    >>> db.getmany(r)
+    [{'name': 'John', 'age': 18}, {'name': 'Bob', 'age': 30}]
 
     >>> db.save()
     True
