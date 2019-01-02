@@ -1,4 +1,4 @@
-|Build Status| |Coverage| |Version|
+|Build Status| |Coverage| |Version| |License|
 
 dbj
 ===
@@ -450,3 +450,6 @@ find(query, sens=False, asc=True) -> Simple query like search.
 
 .. |Version| image:: https://badge.fury.io/py/dbj.svg
     :target: https://pypi.org/project/dbj/
+
+.. |License| image:: https://img.shields.io/pypi/l/dbj.svg
+    :target: https://github.com/pdrb/dbj/blob/master/LICENSE
