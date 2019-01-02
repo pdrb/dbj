@@ -1,4 +1,4 @@
-|Build Status| |Coverage|
+|Build Status| |Coverage| |Version|
 
 dbj
 ===
@@ -447,3 +447,6 @@ find(query, sens=False, asc=True) -> Simple query like search.
 
 .. |Coverage| image:: https://coveralls.io/repos/github/pdrb/dbj/badge.svg?branch=master
     :target: https://coveralls.io/github/pdrb/dbj?branch=master
+
+.. |Version| image:: https://badge.fury.io/py/dbj.svg
+    :target: https://pypi.org/project/dbj/
