@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.3
+# dbj 0.1.4
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 20190102
+# date: 20190109
 
 import json
 import uuid
@@ -77,7 +77,8 @@ class dbj(object):
 
         Raises:
             TypeError: If document is not dict, document is empty, the optional
-                key is not str or a document field (dict key) is not str.
+                key is not str, document field (dict key) is not str or
+                document is not json serializable
         '''
         if not isinstance(document, dict):
             raise self.document_type_error
@@ -90,6 +91,8 @@ class dbj(object):
         for field in document:
             if not self._isstr(field):
                 raise TypeError('document field (dict key) must be string')
+        if not self._is_serializable(document):
+            raise TypeError('document is not json serializable')
         self.db[key] = document
         self._autosave()
         return key
@@ -675,6 +678,14 @@ class dbj(object):
             if isinstance(string, str):
                 return True
         return False
+
+    def _is_serializable(self, obj):
+        '''Check if the object is json serializable'''
+        try:
+            json.dumps(obj)
+        except (TypeError, OverflowError):
+            return False
+        return True
 
     def _autosave(self):
         '''Save if autosave is enabled'''

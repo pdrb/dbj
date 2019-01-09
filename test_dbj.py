@@ -40,6 +40,8 @@ class testdbj(unittest.TestCase):
             self.db.insert({1: 'test'})
         with self.assertRaises(TypeError):
             self.db.insert({})
+        with self.assertRaises(TypeError):
+            self.db.insert({'complex': 1 + 1j})
         self.assertEqual(self.db.insert({'test': 'testing'}, '1'), '1')
         self.db.insert({'test2': 'testing2'})
         self.assertEqual(self.db.size(), 2)
