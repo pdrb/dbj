@@ -65,13 +65,6 @@ Install using pip::
     $ pip install dbj
 
 
-Release Notes - 0.1.4
-=====================
-
-- The insert() method will raise a TypeError exception if the document dict is
-not json serializable.
-
-
 Examples
 ========
 
@@ -249,6 +242,12 @@ The numbers comparison operators are::
 The supported logical operatos are::
 
     and, or
+
+
+Release Notes (0.1.4)
+=====================
+
+- The insert() method will raise a TypeError exception if the document dict is not json serializable.
 
 
 Performance
