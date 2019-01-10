@@ -345,6 +345,10 @@ class testdbj(unittest.TestCase):
         self.assertFalse(self.db._isstr(1))
         self.assertTrue(self.db._isstr('1'))
 
+    def test__is_serializable(self):
+        self.assertFalse(self.db._is_serializable({'complex': 1 + 1j}))
+        self.assertTrue(self.db._is_serializable({'name': 'Peter'}))
+
     def test__autosave(self):
         self.db = dbj('tests_dbj.db', autosave=True)
         self.db.insert({'test': 'testing'})
