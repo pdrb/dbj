@@ -65,6 +65,13 @@ Install using pip::
     $ pip install dbj
 
 
+Release Notes - 0.1.4
+=====================
+
+- The insert() method will raise a TypeError exception if the document dict is
+not json serializable.
+
+
 Examples
 ========
 
@@ -259,9 +266,9 @@ second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
     --------------------------------
 
     Inserting 100000 documents using auto generated uuid1 key...
-    Done! Time spent: 2.66s
+    Done! Time spent: 4.44s
     Inserted: 100000
-    Rate: 37632 ops/s
+    Rate: 22515 ops/s
 
     --------------------------------
 
@@ -271,35 +278,35 @@ second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
     --------------------------------
 
     Inserting 100000 documents using a supplied key...
-    Done! Time spent: 0.53s
+    Done! Time spent: 1.26s
     Inserted: 100000
-    Rate: 190029 ops/s
+    Rate: 79563 ops/s
 
     --------------------------------
 
     Retrieving 100000 documents one at a time...
-    Done! Time spent: 1.52s
+    Done! Time spent: 1.54s
     Retrieved: 100000
-    Rate: 65823 ops/s
+    Rate: 64754 ops/s
 
     --------------------------------
 
     Saving database to disk...
-    Done! Time spent: 0.94s
+    Done! Time spent: 1.06s
 
     --------------------------------
 
     Deleting 100000 documents one at a time...
-    Done! Time spent: 0.22s
+    Done! Time spent: 0.24s
     Deleted: 100000
-    Rate: 461249 ops/s
+    Rate: 419770 ops/s
 
     --------------------------------
 
     Removing file...
     Done!
 
-    Peak memory usage: 60.45 MB
+    Peak memory usage: 60.41 MB
 
 
 Available commands
