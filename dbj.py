@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.4
+# dbj 0.1.5
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 20190109
+# date: 2019-01-12
 
 import json
 import uuid
@@ -672,12 +672,9 @@ class dbj(object):
     def _isstr(self, string):
         '''Check string instance based on Python version'''
         if sys.version_info[0:2] == (2, 7):
-            if isinstance(string, basestring):
-                return True
+            return isinstance(string, basestring)
         else:
-            if isinstance(string, str):
-                return True
-        return False
+            return isinstance(string, str)
 
     def _is_serializable(self, obj):
         '''Check if the object is json serializable'''
