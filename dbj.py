@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.5
+# dbj 0.1.6
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 2019-01-12
+# date: 2019-08-31
 
 import json
 import uuid
@@ -212,8 +212,8 @@ class dbj(object):
             The first key or False if database is empty.
         '''
         try:
-            key = self.getallkeys()[0]
-        except IndexError:
+            key = next(iter(self.db))
+        except StopIteration:
             return False
         return key
 
@@ -224,8 +224,8 @@ class dbj(object):
             The last key or False if database is empty.
         '''
         try:
-            key = self.getallkeys()[-1]
-        except IndexError:
+            key = next(reversed(self.db))
+        except StopIteration:
             return False
         return key
 
