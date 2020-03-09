@@ -231,6 +231,8 @@ class testdbj(unittest.TestCase):
         self.assertEqual(self.db.sort(
             keys, 'age', reverse=True), ['3', '1', '2', '4']
         )
+        self.assertEqual(self.db.sort(keys, 'country'), ['5'])
+        self.assertEqual(self.db.sort(['3', '4'], 'age'), ['4', '3'])
 
     def test_findtext(self):
         with self.assertRaises(TypeError):
@@ -244,7 +246,7 @@ class testdbj(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.db.findtext('1', 'test', inverse='1')
         with self.assertRaises(TypeError):
-            self.db.findtext('1', 'test', ascii='0')
+            self.db.findtext('1', 'test', asc='0')
         self.db.insert({'name': 'André'}, '1')
         self.db.insert({'name': 'andre silva'}, '2')
         self.db.insert({'country': 'Brasil'}, '3')

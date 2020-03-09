@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.6
+# dbj 0.1.7
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 2019-08-31
+# date: 2020-03-09
 
 import json
 import uuid
@@ -410,9 +410,9 @@ class dbj(object):
         if not self._isstr(field):
             raise TypeError('field must be string')
         sorted_list = []
-        for key, doc in self.db.items():
+        for key in keys:
             try:
-                sorted_list.append((doc[field], key))
+                sorted_list.append((self.db[key][field], key))
             except KeyError:
                 pass
         sorted_list.sort(reverse=reverse)

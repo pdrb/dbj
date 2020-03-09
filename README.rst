@@ -1,4 +1,4 @@
-|Build Status| |Coverage| |Version| |Supported| |License|
+|Build Status| |Coverage| |Version| |Supported| |Downloads| |License|
 
 dbj
 ===
@@ -7,7 +7,7 @@ dbj is a simple embedded in memory json database.
 
 It is easy to use, fast and has a simple query language.
 
-The code is fully documented, tested and beginner friendly with around 400 LOC.
+The code is fully documented, tested and beginner friendly.
 
 Only the standard library is used and it works on Python 2.7, Python 3.4+ and PyPy 2.7.
 
@@ -24,10 +24,10 @@ Usage
     >>> db.insert({'name': 'John', 'age': 18})
     'a71d90ce0c7611e995faf23c91392d78'
 
-    >>> # Insert using a supplied key, in this case 'user:anab'
-    >>> user = {'name': 'Ana Beatriz', 'age': 10, 'username': 'anab'}
-    >>> db.insert(user, 'user:anab')
-    'user:anab'
+    >>> # Insert using a supplied key, in this case 'anab@example.org'
+    >>> user = {'name': 'Ana Beatriz', 'age': 10}
+    >>> db.insert(user, 'anab@example.org')
+    'anab@example.org'
 
     >>> db.insert({'name': 'Bob', 'age': 30})
     'cc6ddfe60c7611e995faf23c91392d78'
@@ -35,14 +35,14 @@ Usage
     >>> db.get('a71d90ce0c7611e995faf23c91392d78')
     {'name': 'John', 'age': 18}
 
-    >>> db.get('user:anab')
-    {'name': 'Ana Beatriz', 'age': 10, 'username': 'anab'}
+    >>> db.get('anab@example.org')
+    {'name': 'Ana Beatriz', 'age': 10}
 
     >>> db.find('age >= 18')
     ['a71d90ce0c7611e995faf23c91392d78', 'cc6ddfe60c7611e995faf23c91392d78']
 
     >>> db.find('name == "ana beatriz"')
-    ['user:anab']
+    ['anab@example.org']
 
     >>> r = db.find('name == "John" or name == "Bob" and age > 10')
     >>> db.getmany(r)
@@ -470,6 +470,9 @@ find(query, sens=False, asc=True) -> Simple query like search.
 
 .. |Supported| image:: https://img.shields.io/pypi/pyversions/dbj.svg
     :target: https://pypi.org/project/dbj/
+
+.. |Downloads| image:: https://pepy.tech/badge/dbj
+     :target: https://pepy.tech/project/dbj
 
 .. |License| image:: https://img.shields.io/pypi/l/dbj.svg
     :target: https://github.com/pdrb/dbj/blob/master/LICENSE
