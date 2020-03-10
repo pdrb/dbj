@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.7
+# dbj 0.1.8
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 2020-03-09
+# date: 2020-03-10
 
 import json
 import uuid
@@ -397,7 +397,7 @@ class dbj(object):
         Args:
             keys (list): List containing the keys of the documents to sort.
             field (str): Field to sort.
-            reverse (bool, optional): Reverse search. Defaults to False.
+            reverse (bool, optional): Reverse sort. Defaults to False.
 
         Returns:
             Sorted list with the documents keys.
@@ -547,7 +547,7 @@ class dbj(object):
                     match_list.append(doc_key)
         return match_list
 
-    def find(self, query, sens=False, asc=True):
+    def find(self, query, sens=False, asc=True, sortby=None, reverse=False):
         '''Simple query like search.
 
         Args:
@@ -561,15 +561,19 @@ class dbj(object):
             sens (bool, optional): Case sensitive. Defaults to False.
             asc (bool, optional): Ascii conversion before matching, this
                 matches text like 'cafe' and 'café'. Defaults to True.
+            sortby (string, optional): Sort using the provided field.
+            reverse (bool, optional): Reverse sort. Defaults to False.
 
         Returns:
             List with the keys of the documents that matched the search.
 
         Raises:
-            TypeError: If query is invalid.
+            TypeError: If query is invalid or sortby is not a string.
         '''
         if not self._isstr(query):
             raise TypeError('query must be string')
+        if sortby is not None and not self._isstr(sortby):
+            raise TypeError('sortby must be string')
         tokens = self._parse_query(query)
         if len(tokens) < 3:
             raise TypeError('invalid query: "{}"'.format(query))
@@ -632,6 +636,8 @@ class dbj(object):
                     result = result & sets[i+1]
                 elif lops[i] == 'or':
                     result = result | sets[i+1]
+        if sortby is not None:
+            result = self.sort(list(result), sortby, reverse=reverse)
         return list(result)
 
     def _parse_query(self, query):

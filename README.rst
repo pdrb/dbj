@@ -53,6 +53,15 @@ Usage
     >>> db.getmany(r)
     [{'name': 'John', 'age': 18}, {'name': 'Bob', 'age': 30}]
 
+    >>> # Sort can also be used from find directly
+    >>> r = db.find('age >= 10', sortby='age')
+    >>> db.getmany(r)
+    [{'name': 'Ana Beatriz', 'age': 10}, {'name': 'John', 'age': 18}, {'name': 'Bob', 'age': 30}]
+
+    >>> # One-liner:
+    >>> db.getmany(db.find('age >= 10', sortby='age'))
+    [{'name': 'Ana Beatriz', 'age': 10}, {'name': 'John', 'age': 18}, {'name': 'Bob', 'age': 30}]
+
     >>> db.save()
     True
 
@@ -181,8 +190,7 @@ Searchin and sorting:
     >>> db.getmany(r)
     [{'name': 'John Doe', 'age': 18}, {'name': 'Ana', 'age': 10}]
 
-    >>> r = db.find('age < 40')
-    >>> r = db.sort(r, 'age')
+    >>> r = db.find('age < 40', sortby='age')
     >>> db.getmany(r)
     [{'name': 'Ana', 'age': 10}, {'name': 'John Doe', 'age': 18}, {'name': 'Beatriz', 'age': 30}]
 
@@ -450,11 +458,13 @@ findnum(expression) -> Simple number comparison search on provided field.
     Returns:
         List with the keys of the documents that matched the search.
 
-find(query, sens=False, asc=True) -> Simple query like search.
+find(query, sens=False, asc=True, sortby=None, reverse=False) -> Simple query like search.
     Args:
         | query (str): The query to use.
         | sens (bool, optional): Case sensitive. Defaults to False.
         | asc (bool, optional): Ascii conversion before matching, this matches text like 'cafe' and 'café'. Defaults to True.
+        | sortby (string, optional): Sort using the provided field.
+        | reverse (bool, optional): Reverse sort. Defaults to False.
     Returns:
         List with the keys of the documents that matched the search.
 

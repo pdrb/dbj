@@ -293,10 +293,12 @@ class testdbj(unittest.TestCase):
             self.db.find('name == "Ana" and')
         with self.assertRaises(TypeError):
             self.db.find('name = "Ana"')
+        with self.assertRaises(TypeError):
+            self.db.find('name == "Ana"', sortby=1)
         docs = [
             {'name': 'André', 'age': 10},
-            {'name': 'andre silva', 'age': '18'},
-            {'name': 'Bob "B" Lee', 'age': '30'}
+            {'name': 'andre silva', 'age': 18},
+            {'name': 'Bob "B" Lee', 'age': 30},
         ]
         self.db.insert(docs[0], '1')
         self.db.insert(docs[1], '2')
@@ -325,6 +327,11 @@ class testdbj(unittest.TestCase):
         self.assertEqual(self.db.find(query), ['3'])
         query = 'name == "andre" or name == "ana" or name == "bob"'
         self.assertEqual(self.db.find(query), ['1'])
+        self.db.insert({'name': 'Emma', 'age': 22}, '4')
+        query = 'age >= 18'
+        self.assertEqual(self.db.find(query, sortby='age'), ['2', '4', '3'])
+        self.assertEqual(self.db.find(
+            query, sortby='age', reverse=True), ['3', '4', '2'])
 
     def test__parse_query(self):
         query = 'age <= 18'
