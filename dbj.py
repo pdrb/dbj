@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.8
+# dbj 0.1.9
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 2020-03-10
+# date: 2020-05-20
 
 import json
 import uuid
@@ -58,11 +58,20 @@ class dbj(object):
             db_data = OrderedDict()
         self.db = db_data
 
-    def save(self):
-        '''Save database to disk protecting from kill signals.'''
+    def save(self, indent=None):
+        '''Save database to disk protecting from kill signals.
+
+        Args:
+            indent (int or str, optional): If provided, save a prettified json
+                with that indent level. 0, negative or "" will only insert
+                newlines.
+
+        Returns:
+            True if saved successful.
+        '''
         with open(self.path, 'wt') as f:
             with KillProtected():
-                json.dump(self.db, f)
+                json.dump(self.db, f, indent=indent)
         return True
 
     def insert(self, document, key=None):
@@ -78,7 +87,7 @@ class dbj(object):
         Raises:
             TypeError: If document is not dict, document is empty, the optional
                 key is not str, document field (dict key) is not str or
-                document is not json serializable
+                document is not json serializable.
         '''
         if not isinstance(document, dict):
             raise self.document_type_error

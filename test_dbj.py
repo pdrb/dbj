@@ -30,6 +30,7 @@ class testdbj(unittest.TestCase):
     def test_save(self):
         self.db.insert({'test': 'testing'})
         self.assertTrue(self.db.save())
+        self.assertTrue(self.db.save(indent=2))
 
     def test_insert(self):
         with self.assertRaises(TypeError):

@@ -201,6 +201,13 @@ Save the database to disk:
     >>> db.save()
     True
 
+To save a prettified json, use indent:
+
+.. code-block:: python
+
+    >>> db.save(indent=4)
+    True
+
 Enable auto saving to disk after a insert, update or delete:
 
 .. code-block:: python
@@ -335,7 +342,9 @@ insertmany(documents) -> Insert multiple documents on database.
     Returns:
         Number of inserted documents.
 
-save() -> Save database to disk.
+save(indent=None) -> Save database to disk.
+    Args:
+        indent (int or str, optional): If provided, save a prettified json with that indent level. 0, negative or "" will only insert newlines.
     Returns:
         True if successful.
 
