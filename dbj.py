@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# dbj 0.1.9
+# dbj 0.1.10
 # simple embedded in memory json database
 # author: Pedro Buteri Gonring
 # email: pedro@bigode.net
-# date: 2020-05-20
+# date: 2020-10-26
 
 import json
 import uuid
