@@ -276,16 +276,16 @@ good. On a cheap single core VM it can handle dozens of thousands operations
 per second.
 
 A simple benchmark is included to get a roughly estimative of operations per
-second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
+second. Here is the result on a $5 bucks Linode VM running on Python 3.6::
 
-    $ python3 bench_dbj.py
+    $ python3.6 bench_dbj.py
 
     --------------------------------
 
     Inserting 100000 documents using auto generated uuid1 key...
-    Done! Time spent: 4.44s
+    Done! Time spent: 3.23s
     Inserted: 100000
-    Rate: 22515 ops/s
+    Rate: 30995 ops/s
 
     --------------------------------
 
@@ -297,33 +297,33 @@ second. Here is the result on a $5 bucks Linode VM running on Pyhton 3::
     Inserting 100000 documents using a supplied key...
     Done! Time spent: 1.26s
     Inserted: 100000
-    Rate: 79563 ops/s
+    Rate: 79587 ops/s
 
     --------------------------------
 
     Retrieving 100000 documents one at a time...
-    Done! Time spent: 1.54s
+    Done! Time spent: 1.61s
     Retrieved: 100000
-    Rate: 64754 ops/s
+    Rate: 62136 ops/s
 
     --------------------------------
 
     Saving database to disk...
-    Done! Time spent: 1.06s
+    Done! Time spent: 1.09s
 
     --------------------------------
 
     Deleting 100000 documents one at a time...
-    Done! Time spent: 0.24s
+    Done! Time spent: 0.22s
     Deleted: 100000
-    Rate: 419770 ops/s
+    Rate: 450764 ops/s
 
     --------------------------------
 
     Removing file...
     Done!
 
-    Peak memory usage: 60.41 MB
+    Peak memory usage: 57.37 MB
 
 
 Available commands
