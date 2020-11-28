@@ -9,7 +9,7 @@ It is easy to use, fast and has a simple query language.
 
 The code is fully documented, tested and beginner friendly.
 
-Only the standard library is used and it works on Python 2.7, Python 3.4+ and PyPy 2.7.
+Only the standard library is used and it works on Python 2.7, Python 3.4+, PyPy 2.7 and PyPy 3.6.
 
 
 Usage
@@ -412,7 +412,7 @@ getrandom() -> Get a random document on database.
     Returns:
         A document or False if database is empty.
 
-getfirst(self) -> Get the first inserted document on database.
+getfirst() -> Get the first inserted document on database.
     Returns:
         The first inserted document or False if database is empty.
 
