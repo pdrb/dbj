@@ -8,6 +8,11 @@ python:
   - "3.8"
   - "pypy2"
   - "pypy3"
+jobs:
+  include:
+    - python: "3.4"
+      dist: xenial
+
 install:
   - pip install coveralls
 script:
