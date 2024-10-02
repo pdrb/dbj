@@ -9,6 +9,9 @@ test:
 build:
 	python3 -m build
 
+bench:
+	python3 bench_dbj.py
+
 clean:
 	rm -rf dist
 	find . -name '.ruff_cache' -exec rm -rf {} +
