@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dbj"
+dynamic = ["version"]
+authors = [
+  { name="Pedro Gonring", email="pedro@bigode.net" },
+]
+description = "Simple embedded in memory json database"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["json", "database", "dbj"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/pdrb/dbj"
+
+[tool.hatch.version]
+path = "dbj.py"
