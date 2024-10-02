@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Simple embedded in memory json database"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 keywords = ["json", "database", "dbj"]
 classifiers = [
     "Development Status :: 4 - Beta",

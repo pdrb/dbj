@@ -13,7 +13,7 @@ It is easy to use, fast and has a simple query language.
 
 The code is fully documented, tested and beginner friendly.
 
-Only the standard library is used and it works on Python 3.7+. For older Python (2.7, 3.4...) use version `0.1.10`.
+Only the standard library is used and it works on Python 3.8+. For older Python (2.7, 3.4...) use version `0.1.10`.
 
 ## Usage
 
