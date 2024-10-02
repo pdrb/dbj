@@ -1,12 +1,11 @@
 import os
-import timeit
 import resource
+import timeit
 
 from dbj import dbj
 
-
 db = dbj("bench_database.json")
-n = 100000
+n = 100_000
 
 
 def insert_auto():
